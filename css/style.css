@@ -1,0 +1,14 @@
+.navbar-toggle .fa-bars {
+    color: #fff;
+    font-size: 20px;
+}
+
+.authorization-form {
+    padding: 15px 15px 0 15px;
+    min-width: 250px;
+}
+
+.g-recaptcha {
+    transform: scale(0.885);
+    transform-origin: 0 0;
+}
