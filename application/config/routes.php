@@ -6,5 +6,8 @@
         'profile' => 'user/profile',
         'chat/([0-9]+)/message' => 'chat/SaveMessage/$1',
         'chat/([0-9]+)/connect' => 'chat/Connecting/$1',
+        'addPost' => 'post/addPost',
+        'suggestPost' => 'page/addPost',
+        'messages' => 'page/messages',
         '' => 'page/main'
     ];

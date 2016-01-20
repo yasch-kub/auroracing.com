@@ -7,8 +7,8 @@ class UserController
         if (isset($_POST['login'])
             and isset($_POST['email'])
             and isset($_POST['password'])
-            and isset($_POST['passwordConfirm'])
-            and isset($_POST['g-recaptcha-response']))
+            and isset($_POST['passwordConfirm']))
+            //and isset($_POST['g-recaptcha-response']))
         {
             $login = Validator::clear($_POST['login']);
             $email = $_POST['email'];

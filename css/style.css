@@ -12,3 +12,15 @@
     transform: scale(0.885);
     transform-origin: 0 0;
 }
+
+textarea {
+    resize: vertical;
+}
+
+#dropZone{
+    border: 2px dashed;
+    border-radius: 5px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+}
