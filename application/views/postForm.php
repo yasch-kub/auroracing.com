@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-4 col-md-offset-4 col-md-4 centered">
-        <form role="form" action="/addPost">
+        <form role="form" action="/addPost" method="post">
             <div class="form-group">
                 <label for="title">Title:</label>
                 <input name="title" type="text" class="form-control" id="title">
@@ -13,13 +13,17 @@
                 <label for="content">Content:</label>
                 <textarea name="content" id="content" class="form-control"></textarea>
             </div>
-            <div id="dropZone" class="form-group">
+            <input type="hidden" id="uploadedPhotos" value="" name="photos">
+            <div class="dropZone" id="postImageDropzone" class="form-group">
                 Drop photos here
             </div>
-            <div class="form-group">
-                <input type="file">
+            <div class="row">
+                <div class="form-group" id="photosPreview">
+                </div>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default center-block">Submit</button>
+            </div>
         </form>
     </div>
 </div>

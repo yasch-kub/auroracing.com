@@ -1,5 +1,5 @@
 .navbar-toggle .fa-bars {
-    color: #fff;
+    color: orange;
     font-size: 20px;
 }
 
@@ -17,10 +17,14 @@ textarea {
     resize: vertical;
 }
 
-#dropZone{
+.dropZone{
     border: 2px dashed;
     border-radius: 5px;
     height: 200px;
     line-height: 200px;
     text-align: center;
+}
+
+#photosPreview {
+    margin: 15px;
 }

@@ -1,0 +1,8 @@
+#dropzone {
+    border: 1px dashed;
+}
+
+.media-object {
+    width: 64px;
+    height: 64px;
+}

@@ -5,30 +5,22 @@
                     aria-expanded="false" aria-controls="navbar">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="#">Autoracer</a>
+            <a class="navbar-brand" href="/">Autoracer</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="">
-                        Головна
+                    <a href="/">
+                        Події
                     </a>
                 </li>
-                <li>
-                    <a href="">
-                        Звіти подій
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        Майбутні події
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        Магазин
-                    </a>
-                </li>
+                {% if user.isLoggedIn %}
+                    <li>
+                        <a href="/suggestPost">
+                            Запропонувати подію
+                        </a>
+                    </li>
+                {% endif %}
                 <li>
                     <a href="">
                         Про нас
@@ -55,6 +47,14 @@
                         <a>
                             Ласкаво просимо, <b> {{ user.name }}</b>
                         </a>
+                    </li>
+                    <li>
+                        {% if user.isAdmin %}
+                            <a href="/adminPanel">
+                                Панель адміністратора
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                        {% endif %}
                     </li>
                     <li class="active">
                         <a href="/profile">

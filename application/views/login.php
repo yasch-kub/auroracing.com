@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <form class="form" id="logForm" role="form" method="post" action="/login" accept-charset="UTF-8" id="login-nav">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="logEmail" name="login" placeholder="Електронна адреса" required autocomplete="off">
+                        <input type="text" class="form-control" id="logEmail" name="login" placeholder="Логін" required autocomplete="off">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" id="logPassword" name="password" placeholder="Пароль" required autocomplete="off">

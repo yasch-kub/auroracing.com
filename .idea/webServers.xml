@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="de1c1c9a-f0a4-4a8f-b181-256787a41a4f" name="autoracing" url="http://autoracing.esy.es/">
+        <fileTransfer host="autoracing.esy.es" port="21" rootFolder="/public_html" username="u327241232">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -5,13 +5,13 @@
 
 #containerPhoto {
     position: inherit;
-    width: 200%;
+    width: 1000%;
 }
 
 #containerPhoto > div {
     padding: 0 4px;
     float: left;
-    width: 12.5% !important;
+    width: 2.5% !important;
 }
 
 #containerPhoto .thumbnail {
@@ -23,3 +23,19 @@
     padding: 2px;
 }
 
+.arrow{
+    font-size:30px;
+    text-align: center;
+    line-height: 110px;
+}
+
+.arrow i{
+    color: #777;
+    transition: color 0.2s ease-in;
+
+}
+
+.arrow i:hover{
+    cursor: pointer;
+    color: #5b9bd1;
+}

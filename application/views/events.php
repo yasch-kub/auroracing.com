@@ -1,16 +1,16 @@
 <div class="row">
     <div class="col-lg-8">
-        <h1>Blog Post Title</h1>
+        <h1>{{ post.title }}</h1>
         <p class="lead">
-            by <a href="#">Start Bootstrap</a>
+            by <a href="/user/{{ post.author.id }}">{{ post.author.login }}</a>
         </p>
         <hr>
         <p>
             <i class="fa fa-clock-o"></i>
-            Posted on August 24, 2013 at 9:00 PM
+            Posted on {{ post.date }}
         </p>
         <hr>
-        <div id="slider">
+        <div id="slider" class="row">
             <div class="col-md-1 arrow">
                 <i class="fa fa-angle-left"></i>
             </div>
@@ -19,7 +19,7 @@
                     {% for photo in post.photos %}
                     <div>
                         <a href="#" class="thumbnail">
-                            <img num="{{ loop.index + 1}}" src="/application/data/posts/{{post.id}}/photos/{{photo}}">
+                            <img num="{{ loop.index }}" src="/application/data/posts/{{ post.id }}/{{ photo }}">
                         </a>
                     </div>
                     {% endfor %}
@@ -30,78 +30,37 @@
             </div>
         </div>
         <hr>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error
-            quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum
-            minus inventore?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste
-            ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus,
-            voluptatibus.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius
-            illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim,
-            iure!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat
-            totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam
-            tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui,
-            necessitatibus, est!</p>
+        <p class="lead">
+            {{ post.header }}
+        </p>
+        <p>
+            {{ post.text }}
+        </p>
         <hr>
         <div class="well">
             <h4>Leave a Comment:</h4>
-            <form role="form">
+            <form role="form" action="/addComment/{{ post.id }}" method="post">
                 <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
+                    <textarea class="form-control" rows="3" name="text"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" {% if not user.isLoggedIn %} disabled {% endif %}>Submit</button>
             </form>
         </div>
         <hr>
-        <div class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object" src="http://placehold.it/64x64" alt="">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">
-                    Start Bootstrap
-                    <small>August 25, 2014 at 9:30 PM</small>
-                </h4>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras
-                purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-        </div>
-        <!-- Comment -->
-        <div class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object" src="http://placehold.it/64x64" alt="">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">
-                    Start Bootstrap
-                    <small>August 25, 2014 at 9:30 PM</small>
-                </h4>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                vulputate
-                fringilla. Donec lacinia congue felis in faucibus.
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Nested Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin
-                        commodo.
-                        Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                        nisi
-                        vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
+        {% for comment in post.comments %}
+            <div class="media">
+                <a class="pull-left" href="/user/{{ comment.id }}">
+                    <img class="media-object" src="/application/data/users/{{ comment.id }}/avatar.jpg" alt="">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        {{ comment.login }}
+                        <small> {{ comment.date }}</small>
+                    </h4>
+                    {{ comment.text }}
                 </div>
             </div>
-        </div>
-        <!--Pagination-->
-
+        {% endfor %}
     </div>
     <!--Search-->
     <div class="col-md-4">
@@ -188,11 +147,16 @@
 <div class="row">
     <div class="col-md-offset-5 col-md-6">
         <ul class="pagination">
-            <li><a href="#">1</a></li>
-            <li class="active"><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
+            {% for i in 1..postCount %}
+            <li
+                {% if post.id == i %}
+                    class="active"
+                {% endif %}>
+                <a href="/event/{{ i }}">
+                    {{ i }}
+                </a>
+            </li>
+            {% endfor %}
         </ul>
     </div>
 </div>
