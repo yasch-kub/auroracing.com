@@ -11,19 +11,19 @@
             <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="/">
-                        Події
+                        {{ dict.events }}
                     </a>
                 </li>
                 {% if user.isLoggedIn %}
                     <li>
                         <a href="/suggestPost">
-                            Запропонувати подію
+                            {{ dict.suggestEvent }}
                         </a>
                     </li>
                 {% endif %}
                 <li>
                     <a href="">
-                        Про нас
+                        {{ dict.aboutUs }}
                     </a>
                 </li>
             </ul>
@@ -31,13 +31,13 @@
                 {% if not user.isLoggedIn %}
                     <li class="active">
                         <a href="" data-toggle="modal" data-target="#logModal">
-                            Вхід
+                            {{ dict.logIn }}
                             <i class="fa fa-sign-in"></i>
                         </a>
                     </li>
                     <li>
                         <a href="" data-toggle="modal" data-target="#regModal">
-                            Регістрація
+                            {{ dict.registration }}
                             <i class="fa fa-user-plus"></i>
                         </a>
                     </li>
@@ -45,26 +45,32 @@
                 {% else %}
                     <li>
                         <a>
-                            Ласкаво просимо, <b> {{ user.name }}</b>
+                            {{ dict.welcome }}, <b> {{ user.name }}</b>
                         </a>
                     </li>
                     <li>
                         {% if user.isAdmin %}
                             <a href="/adminPanel">
-                                Панель адміністратора
+                                {{ dict.adminPanel }}
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                        {% endif %}
+                        {% if user.isModerator %}
+                            <a href="/moderatorPanel">
+                                {{ dict.moderatorPanel }}
                                 <i class="fa fa-wrench"></i>
                             </a>
                         {% endif %}
                     </li>
                     <li class="active">
                         <a href="/profile">
-                            Профіль
+                            {{ dict.profile }}
                             <i class="fa fa-user"></i>
                         </a>
                     </li>
                     <li>
                         <a href="/signOut">
-                            Вихід
+                            {{ dict.logOut }}
                             <i class="fa fa-sign-out"></i>
                         </a>
                     </li>

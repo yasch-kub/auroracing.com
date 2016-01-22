@@ -36,6 +36,7 @@ class UserController
             $user = UserModel::isCorrectUser($login, $password);
 
             if ($user and !empty($user)) {
+                UserModel::setUserLanguage($user['language']);
                 $userId = $user['id'];
                 $role = $user['role'];
                 UserModel::setUser($userId, $login, $role);
@@ -139,5 +140,15 @@ class UserController
             UserModel::changeTheme($newTheme);
         }
         header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+
+    public static function ActionChangeLanguage()
+    {
+        if(UserModel::isUserLoggedIn())
+        {
+            $lang = $_POST['lang'];
+            UserModel::changeUserLanguage($lang);
+        }
+        header("Location: " . $_SERVER['HTTP_REFERER']);
     }
 }

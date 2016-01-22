@@ -2,12 +2,12 @@
     <div class="col-lg-8">
         <h1>{{ post.title }}</h1>
         <p class="lead">
-            by <a href="/user/{{ post.author.id }}">{{ post.author.login }}</a>
+            {{ dict.by }} <a href="/user/{{ post.author.id }}">{{ post.author.login }}</a>
         </p>
         <hr>
         <p>
             <i class="fa fa-clock-o"></i>
-            Posted on {{ post.date }}
+            {{ dict.postedOn }} {{ post.date }}
         </p>
         <hr>
         <div id="slider" class="row">
@@ -38,12 +38,12 @@
         </p>
         <hr>
         <div class="well">
-            <h4>Leave a Comment:</h4>
+            <h4>{{ dict.leaveComment }}</h4>
             <form role="form" action="/addComment/{{ post.id }}" method="post">
                 <div class="form-group">
                     <textarea class="form-control" rows="3" name="text"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" {% if not user.isLoggedIn %} disabled {% endif %}>Submit</button>
+                <button type="submit" class="btn btn-primary" {% if not user.isLoggedIn %} disabled {% endif %}>{{ dict.add }}</button>
             </form>
         </div>
         <hr>
@@ -65,7 +65,7 @@
     <!--Search-->
     <div class="col-md-4">
         <div class="well">
-            <h4>Blog Search</h4>
+            <h4>{{ dict.blogSearch }}</h4>
             <div class="input-group">
                 <input type="text" class="form-control">
             <span class="input-group-btn">
@@ -76,72 +76,37 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    What type of services do you provide on the marketplaces?                                                            <span class="label label-primary">Required</span>
-                </h3>
-            </div>
-            <div class="panel-body">
-                <div class="row spacing-elements">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                              <span class="input-group-addon">
-                                <input type="checkbox" name="question-checkbox-2-9" value="1" class="requiredField checkbutton question-checkbox-2">
-                              </span>
-                            <input type="text" class="form-control" value="Programming" disabled="">
-                        </div>
+    {% for quiz in quizes %}
+        <div class="col-md-4">
+            <form role="form" action="saveQuizAnswer/{{ quiz.id }}" method="post">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            {{ quiz.question }}
+                            <span class="label label-primary">Required</span>
+                        </h3>
                     </div>
-                    <div class="col-md-12">
-                        <div class="input-group">
-                              <span class="input-group-addon">
-                                <input type="checkbox" name="question-checkbox-2-10" value="1" class="requiredField checkbutton question-checkbox-2">
-                              </span>
-                            <input type="text" class="form-control" value="Graphic Design" disabled="">
-                        </div>
+                    <div class="panel-body">
+                        {% for answer in quiz.answers %}
+                            <div class="row spacing-elements">
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox" name="{{ loop.index }}" value="1" class="requiredField checkbutton">
+                                        </span>
+                                        <input type="text" class="form-control" value="{{answer}}" disabled="">
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                </div>
-                <div class="row spacing-elements">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                              <span class="input-group-addon">
-                                <input type="checkbox" name="question-checkbox-2-11" value="1" class="requiredField checkbutton question-checkbox-2">
-                              </span>
-                            <input type="text" class="form-control" value="Music Making" disabled="">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="input-group">
-                              <span class="input-group-addon">
-                                <input type="checkbox" name="question-checkbox-2-12" value="1" class="requiredField checkbutton question-checkbox-2">
-                              </span>
-                            <input type="text" class="form-control" value="3D Design" disabled="">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row spacing-elements">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                              <span class="input-group-addon">
-                                <input type="checkbox" name="question-checkbox-2-13" value="1" class="requiredField checkbutton question-checkbox-2">
-                              </span>
-                            <input type="text" class="form-control" value="Support" disabled="">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="input-group">
-                              <span class="input-group-addon">
-                                <input type="checkbox" name="question-checkbox-2-14" value="1" class="requiredField checkbutton question-checkbox-2">
-                              </span>
-                            <input type="text" class="form-control" value="Other" disabled="">
-                        </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary center-block">{{ dict.save }}</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </div>
+    {% endfor %}
 </div>
 
 <div class="row">

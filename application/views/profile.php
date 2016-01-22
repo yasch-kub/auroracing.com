@@ -8,24 +8,24 @@
                             {% if user.id == profile.id %}
                                 <form role="form" action="/changeUserProfile" method="post">
                                     <div class="form-group">
-                                        <strong> Email:
+                                        <strong> {{ dict.email }}:
                                         </strong>
                                         <input value="{{ profile.email }}" type="email" name="email" class="form-control" required>
                                     </div>
                                     <div class="form-group">
-                                        <strong> About:
+                                        <strong> {{ dict.about }}:
                                         </strong>
                                         <textarea name="about" class="form-control">{{ profile.about }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-danger">
-                                            Change
+                                            {{ dict.change }}
                                         </button>
                                     </div>
                                 </form>
-                                <form role="form" method="post" action="/changeTheme">
+                                <form role="form" method="post" action="/changeStandartTheme">
                                     <div class="form-group">
-                                        <strong>Theme: </strong>
+                                        <strong>{{ dict.theme }}: </strong>
                                         <div class="form-group">
                                             <select name="theme" class="form-control">
                                                 {% for theme in themes %}
@@ -36,10 +36,31 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Change</button>
+                                            <button type="submit" class="btn btn-primary">{{ dict.change }} </button>
                                         </div>
                                     </div>
                                 </form>
+                            <form role="form" method="post" action="/changeLanguage">
+                                <div class="form-group">
+                                    <strong>{{ dict.lang }}: </strong>
+                                    <div class="form-group">
+                                        <select name="lang" class="form-control">
+                                            <option value="eng">
+                                                English
+                                            </option>
+                                            <option value="rus">
+                                                Русский
+                                            </option>
+                                            <option value="ukr">
+                                                Українська
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success">{{ dict.change }} </button>
+                                    </div>
+                                </div>
+                            </form>
                             {% else %}
                                 <p>
                                     <strong> Email:

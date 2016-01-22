@@ -33,6 +33,7 @@ class UserModel
         unset($_SESSION['login']);
         unset($_SESSION['role']);
         unset($_SESSION['theme']);
+        unset($_SESSION['lang']);
     }
 
     public static function setUser($id, $login, $role)
@@ -45,7 +46,7 @@ class UserModel
     public static function isCorrectUser($login, $password)
     {
         $db = Db::connect();
-        $query = "SELECT users.id, password, users.role FROM users WHERE users.login = :login";
+        $query = "SELECT users.id, password, users.role, users.language FROM users WHERE users.login = :login";
 
         $stmt = $db->prepare($query);
         $stmt->bindParam(':login', $login);
@@ -134,5 +135,28 @@ class UserModel
         $stmt->bindValue(':theme', $newTheme);
         $stmt->bindValue(':id', self::getUserId());
         $stmt->execute();
+    }
+
+    public static function getUserLanguage()
+    {
+        return isset($_SESSION['lang']) ? $_SESSION['lang'] : 'eng';
+    }
+
+    public static function changeUserLanguage($lang)
+    {
+        UserModel::setUserLanguage($lang);
+
+        $db = Db::connect();
+
+        $query = "UPDATE users SET users.language = :language WHERE users.id = :id";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(':language', $lang);
+        $stmt->bindValue(':id', self::getUserId());
+        $stmt->execute();
+    }
+
+    public static function setUserLanguage($lang)
+    {
+        $_SESSION['lang'] = $lang;
     }
 }

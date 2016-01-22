@@ -17,6 +17,7 @@
         'changeAvatar' => 'user/changeAvatar',
         'changeUserProfile' => 'user/changeUserProfile',
         'changeTheme' => 'user/changeTheme',
+        'changeLanguage' => 'user/changeLanguage',
 
         'adminPanel/users' => 'admin/users',
         'adminPanel/themes' => 'admin/themes',
@@ -25,6 +26,15 @@
         'deleteUser/([0-9]+)' => 'admin/deleteUser/$1',
         'addTheme' => 'admin/addTheme',
         'changeStandartTheme' => 'admin/changeStandartTheme',
+
+//        'saveQuizAnswer/([0-9]+)' => 'post/saveQuizAnswer/$1',
+        'addQuiz/([0-9]+)' => 'moderator/addQuiz/$1',
+        'moderatorPanel/posts' => 'moderator/posts',
+        'moderatorPanel/createQuiz' => 'moderator/createQuiz',
+        'moderatorPanel/quiz' => 'moderator/quiz',
+        'moderatorPanel' => 'moderator/moderatorPanel',
+        'publishPost/([0-9]+)' => 'moderator/publishPost/$1',
+        'deletePost/([0-9]+)' => 'moderator/deletePost/$1',
 
         '' => 'page/main/1'
     ];

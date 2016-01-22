@@ -11,7 +11,8 @@ class PageController
             'links' => ['slider.css', 'events.css'],
             'scripts' => ['slider.js'],
             'post' => $post,
-            'postCount' => PostModel::getPostsCount()
+            'postCount' => PostModel::getPostsCount(),
+            'quizes' => PostModel::getQuizToPost($id)
         ];
 
         $variables = array_merge_recursive(self::getMainVariables(), $variables);
@@ -24,8 +25,10 @@ class PageController
             'scripts' => [
                 'authorization.js'
             ],
+            'dict' => PageModel::getDictionary(UserModel::getUserLanguage()),
             'user' => [
                 'isAdmin' => AdminModel::isAdmin(),
+                'isModerator' => ModeratorModel::isModerator(),
                 'isLoggedIn' => UserModel::isUserLoggedIn(),
                 'name' => UserModel::getUserLogin(),
                 'id' => UserModel::getUserId(),

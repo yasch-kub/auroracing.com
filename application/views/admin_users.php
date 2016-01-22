@@ -2,10 +2,10 @@
     <thead>
     <tr>
         <th>id</th>
-        <th>login</th>
-        <th>email</th>
-        <th>about</th>
-        <th>role</th>
+        <th>{{ dict.login }}</th>
+        <th>{{ dict.email }}</th>
+        <th>{{ dict.about }}</th>
+        <th>{{ dict.role }}</th>
         <th></th>
     </tr>
     </thead>
@@ -20,19 +20,19 @@
                 <td>
                     <select name="role" class="form-control">
                         <option value="1" {% if user.role == 1 %} selected {% endif %}>
-                            User
+                            {{ dict.user }}
                         </option>
                         <option value="2" {% if user.role == 2 %} selected {% endif %}>
-                            Moderator
+                            {{ dict.moderator }}
                         </option>
                         <option value="3" {% if user.role == 3 %} selected {% endif %}>
-                            Admin
+                            {{ dict.admin }}
                         </option>
                     </select>
                 </td>
                 <td>
-                    <button class="btn btn-success" type="submit" formaction="/changeUserRole/{{ user.id }}">Update</button>
-                    <button class="btn btn-danger" type="submit" formaction="/deleteUser/{{ user.id }}">Delete</button>
+                    <button class="btn btn-success" type="submit" formaction="/changeUserRole/{{ user.id }}">{{ dict.update }}</button>
+                    <button class="btn btn-danger" type="submit" formaction="/deleteUser/{{ user.id }}">{{ dict.delete }}</button>
                 </td>
             </form>
         </tr>
